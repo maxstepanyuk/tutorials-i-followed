@@ -10,6 +10,12 @@ export default function Board() {
 
   const [squares, setSquares] = useState(Array(9).fill(null));
   
+  function handleClick(index: number) {
+    const nextSquares = squares.slice();
+    nextSquares[index] = "X";
+    setSquares(nextSquares);
+  }
+
   return (
     <>
       <div className="board-row">
