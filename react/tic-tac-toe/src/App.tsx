@@ -12,6 +12,9 @@ export default function Board() {
   const [xIsNext, setXIsNext] = useState(true);
   
   function handleClick(index: number) {
+    if (squares[index]) { // aka "is null?"
+      return
+    }
     const nextSquares = squares.slice();
     if (xIsNext) {
       nextSquares[index] = "X";
