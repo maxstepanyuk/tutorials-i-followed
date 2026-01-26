@@ -34,7 +34,7 @@ function calculateWinner(squares: []) {
   return null;
 }
 
-export default function Board() {
+function Board() {
 
   const [squares, setSquares] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
@@ -80,5 +80,18 @@ export default function Board() {
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
+  )
+}
+
+export default function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
+      </div>
+      <div className="game-info">
+        <ol>{ }</ol>
+      </div>
+    </div>
   )
 }
