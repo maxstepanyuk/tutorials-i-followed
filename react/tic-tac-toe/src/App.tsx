@@ -89,13 +89,29 @@ export default function Game() {
     setHistory([...history, nextSquares]);
   }
 
+  const movesHtml = history.map(
+    (squares, moveIndex) => {
+      let description: string;
+      if (moveIndex > 0) {
+        description = "go to move #" + moveIndex
+      } else {
+        description = "go to beginning"
+      }
+
+      return (
+        <li>
+          <button onClick={() => alert(squares)}>{description}</button>
+        </li>
+      )
+    })
+
   return (
     <div className="game">
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info">
-        <ol>{ }</ol>
+        <ol>{movesHtml}</ol>
       </div>
     </div>
   )
