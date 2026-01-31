@@ -82,6 +82,7 @@ export default function Game() {
 
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState(true);
+  const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[history.length - 1]; // last (newest) record
 
   function handlePlay(nextSquares) {
