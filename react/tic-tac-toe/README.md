@@ -2,4 +2,6 @@
 
 (docs) version 19.2
 
-2026-01-18
+| start | finish | what |
+|-|-|-|
+| 2026-01-18 | 2026-01-31 | main tutorial |
