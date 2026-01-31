@@ -40,8 +40,10 @@ function Board({ xIsNext, squares, onPlay }) {
   const ROWS = 3
   const COLS = 3
 
+  const winnerSquareIndexes: number[] = calculateWinnerIndexes(squares);
+
   function handleClick(index: number) {
-    if (squares[index] || calculateWinner(squares)) { // aka "is null?"
+    if (squares[index] || winnerSquareIndexes.length > 0) {
       return
     }
     const nextSquares = squares.slice();
@@ -53,7 +55,6 @@ function Board({ xIsNext, squares, onPlay }) {
     onPlay(nextSquares);
   }
 
-  const winnerSquareIndexes: number[] = calculateWinnerIndexes(squares);
   const winner = squares[winnerSquareIndexes[0]];
 
   let status
