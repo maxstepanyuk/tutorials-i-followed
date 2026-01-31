@@ -8,7 +8,7 @@ function Square({ value, onSquareClick, isHighlighted = false }) {
   return <button className="square" onClick={onSquareClick}>{value}</button>;
 }
 
-function calculateWinner(squares: []) {
+function calculateWinnerIndexes(squares: []) {
   const lines_winnerIndexes = [
     [0, 1, 2],
     [3, 4, 5],
@@ -28,12 +28,12 @@ function calculateWinner(squares: []) {
       squares[a] === squares[b] &&
       squares[a] === squares[c]
     ) {
-      return squares[a]
+      return lines_winnerIndexes[index]
     }
 
   }
 
-  return null;
+  return [];
 }
 
 function Board({ xIsNext, squares, onPlay }) {
@@ -53,7 +53,9 @@ function Board({ xIsNext, squares, onPlay }) {
     onPlay(nextSquares);
   }
 
-  const winner = calculateWinner(squares)
+  const winnerSquareIndexes: number[] = calculateWinnerIndexes(squares);
+  const winner = squares[winnerSquareIndexes[0]];
+
   let status
   if (winner) {
     status = 'winner is ' + winner
@@ -68,7 +70,9 @@ function Board({ xIsNext, squares, onPlay }) {
       let squaresHtml = [];
       for (let indexCol = 0; indexCol < nCols; indexCol++) {
         let squareIndex: number = indexRow * nRows + indexCol;
-        squaresHtml.push(<Square key={squareIndex} value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} />)
+        const isHighlighted: boolean = winnerSquareIndexes.includes(squareIndex)
+
+        squaresHtml.push(<Square key={squareIndex} value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} isHighlighted={isHighlighted} />)
       }
 
       rowsHtml.push(
