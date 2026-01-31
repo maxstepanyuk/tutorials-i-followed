@@ -85,6 +85,11 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[history.length - 1]; // last (newest) record
 
+  function jumpTo(nextMove: number) {
+    setCurrentMove(nextMove)
+    setXIsNext(nextMove % 2 === 0)
+  }
+
   function handlePlay(nextSquares) {
     setXIsNext(!xIsNext)
     setHistory([...history, nextSquares]);
@@ -101,7 +106,7 @@ export default function Game() {
 
       return (
         <li key={moveIndex} >
-          <button onClick={() => alert(squares)}>{description}</button>
+          <button onClick={() => jumpTo(moveIndex)}>{description}</button>
         </li>
       )
     })
