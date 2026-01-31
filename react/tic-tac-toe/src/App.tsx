@@ -99,7 +99,7 @@ export default function Game() {
       }
 
       return (
-        <li>
+        <li key={moveIndex} >
           <button onClick={() => alert(squares)}>{description}</button>
         </li>
       )
