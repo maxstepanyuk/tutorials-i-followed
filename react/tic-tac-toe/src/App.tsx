@@ -83,7 +83,7 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [xIsNext, setXIsNext] = useState(true);
   const [currentMove, setCurrentMove] = useState(0);
-  const currentSquares = history[history.length - 1]; // last (newest) record
+  const currentSquares = history[currentMove];
 
   function jumpTo(nextMove: number) {
     setCurrentMove(nextMove)
@@ -91,8 +91,13 @@ export default function Game() {
   }
 
   function handlePlay(nextSquares) {
+    const relevantHistory = history.slice(0, currentMove + 1)
+    const nextHistory = [...relevantHistory, nextSquares];
+    
     setXIsNext(!xIsNext)
-    setHistory([...history, nextSquares]);
+
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
 
   const movesHtml = history.map(
