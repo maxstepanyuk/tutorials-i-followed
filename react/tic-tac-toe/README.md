@@ -5,3 +5,4 @@
 | start | finish | what |
 |-|-|-|
 | 2026-01-18 | 2026-01-31 | main tutorial |
+| 2026-01-31 |  | extra tasks |
