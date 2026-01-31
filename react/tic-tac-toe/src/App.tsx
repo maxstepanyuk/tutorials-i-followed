@@ -37,6 +37,9 @@ function calculateWinner(squares: []) {
 }
 
 function Board({ xIsNext, squares, onPlay }) {
+  const ROWS = 3
+  const COLS = 3
+
   function handleClick(index: number) {
     if (squares[index] || calculateWinner(squares)) { // aka "is null?"
       return
@@ -58,24 +61,29 @@ function Board({ xIsNext, squares, onPlay }) {
     status = 'next is ' + (xIsNext ? "X" : "O")
   }
 
+  function renderSquares(nRows = 3, nCols = 3) {
+    let rowsHtml = [];
+    for (let indexRow = 0; indexRow < nRows; indexRow++) {
+
+      let squaresHtml = [];
+      for (let indexCol = 0; indexCol < nCols; indexCol++) {
+        let squareIndex: number = indexRow * nRows + indexCol;
+        squaresHtml.push(<Square value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} />)
+      }
+
+      rowsHtml.push(
+        <div className="board-row">
+          {squaresHtml}
+        </div>
+      )
+    }
+    return rowsHtml
+  }
+
   return (
     <>
       <p className="status">{status}</p>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
-      </div>
+      {renderSquares(ROWS, COLS)}
     </>
   )
 }
