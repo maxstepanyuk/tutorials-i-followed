@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 
-function Square({ value, onSquareClick }) {
-
+function Square({ value, onSquareClick, isHighlighted = false }) {
+  if (isHighlighted) {
+    return <button className="square square-highlighted" onClick={onSquareClick}>{value}</button>;
+  }
   return <button className="square" onClick={onSquareClick}>{value}</button>;
 }
 
