@@ -99,8 +99,11 @@ export default function Game() {
 
   const movesHtml = history.map(
     (squares, moveIndex) => {
+
       let description: string;
-      if (moveIndex > 0) {
+      if (moveIndex === currentMove) {
+        description = "go to move #" + moveIndex + " (you are here)"
+      } else if (moveIndex > 0) {
         description = "go to move #" + moveIndex
       } else {
         description = "go to beginning"
