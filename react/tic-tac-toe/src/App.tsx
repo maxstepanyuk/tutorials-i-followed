@@ -68,7 +68,7 @@ function Board({ xIsNext, squares, onPlay }) {
       let squaresHtml = [];
       for (let indexCol = 0; indexCol < nCols; indexCol++) {
         let squareIndex: number = indexRow * nRows + indexCol;
-        squaresHtml.push(<Square value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} />)
+        squaresHtml.push(<Square key={squareIndex} value={squares[squareIndex]} onSquareClick={() => handleClick(squareIndex)} />)
       }
 
       rowsHtml.push(
