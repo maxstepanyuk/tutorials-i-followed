@@ -1,3 +1,34 @@
+function ProductRow({ name = "product name", price = "0$", isInStock = true }) {
+  if (isInStock) {
+    return <tr><td>{name}</td><td>{price}</td></tr>
+  }
+  return <tr><td className="not-stocked">{name}</td><td>{price}</td></tr>
+}
+
+function ProductCategoryRow({ name = "category name" }) {
+  return <tr><td colSpan={2}>{name}</td></tr>
+}
+
+function ProductTable({ }) {
+  return (<>
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Price</th></tr>
+      </thead>
+      <tbody>
+        <ProductCategoryRow name={'Fruits'} />
+        <ProductRow name={'Apple'} price={'$1'} />
+        <ProductRow name={'Dragonfruit'} price={'$1'} />
+        <ProductRow name={'Passionfruit'} price={'$2'} isInStock={false} />
+        <ProductCategoryRow name={'Vegetables'} />
+        <ProductRow name={'Spinach'} price={'$2'} />
+        <ProductRow name={'Pumpkin'} price={'$4'} isInStock={false} />
+        <ProductRow name={'Peas'} price={'$1'} />
+      </tbody>
+    </table>
+  </>)
+}
+
 function App() {
 
   const PRODUCTS = [
@@ -19,23 +50,7 @@ function App() {
           <label htmlFor="inStockOnly">Only show products in stock</label>
         </form>
       </div>
-      <div>
-        <table>
-          <thead>
-            <tr><th>Name</th><th>Price</th></tr>
-          </thead>
-          <tbody>
-            <tr><td colSpan={2}>Fruits</td></tr>
-            <tr><td>Apple</td><td>$1</td></tr>
-            <tr><td>Dragonfruit</td><td>$1</td></tr>
-            <tr><td className="not-stocked">Passionfruit</td><td>$2</td></tr>
-            <tr><td colSpan={2}>Vegetables</td></tr>
-            <tr><td>Spinach</td><td>$2</td></tr>
-            <tr><td className="not-stocked">Pumpkin</td><td>$4</td></tr>
-            <tr><td>Peas</td><td>$1</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <ProductTable />
     </>
   )
 }
