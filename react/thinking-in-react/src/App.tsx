@@ -6,7 +6,7 @@ function ProductRow({ name = "product name", price = "0$", isInStock = true }) {
 }
 
 function ProductCategoryRow({ name = "category name" }) {
-  return <tr><td colSpan={2}>{name}</td></tr>
+  return <tr><th colSpan={2}>{name}</th></tr>
 }
 
 function ProductTable({ products }) {
