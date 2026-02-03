@@ -60,6 +60,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status
   if (winner) {
     status = 'winner is ' + winner
+  } else if (!squares.includes(null)) {
+    status = "it's a draw"
   } else {
     status = 'next is ' + (xIsNext ? "X" : "O")
   }
