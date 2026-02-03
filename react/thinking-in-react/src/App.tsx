@@ -11,7 +11,7 @@ function ProductCategoryRow({ name = "category name" }) {
   return <tr><th colSpan={2}>{name}</th></tr>
 }
 
-function ProductTable({ products }) {
+function ProductTable({ products, filterText, inStockOnly }) {
   let rows = [];
   let currentCategory: string | null = null
 
@@ -30,6 +30,15 @@ function ProductTable({ products }) {
 
   products.forEach(
     (product) => {
+
+      if (product.name.toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
+        return
+      }
+
+      if (inStockOnly && !product.stocked) {
+        return
+      }
+
       if (currentCategory !== product.category) {
         rows.push(<ProductCategoryRow name={product.category} />)
         currentCategory = product.category
@@ -67,7 +76,7 @@ function FilterableProductTable({ products }) {
   return (
     <div>
       <SearchBar filterText={filterText} inStockOnly={inStockOnly} />
-      <ProductTable products={products} />
+      <ProductTable products={products} filterText={filterText} inStockOnly={inStockOnly} />
     </div>
   );
 }
