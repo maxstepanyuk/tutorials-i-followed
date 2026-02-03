@@ -40,10 +40,10 @@ function ProductTable({ products, filterText, inStockOnly }) {
       }
 
       if (currentCategory !== product.category) {
-        rows.push(<ProductCategoryRow name={product.category} />)
+        rows.push(<ProductCategoryRow name={product.category} key={product.category} />)
         currentCategory = product.category
       }
-      rows.push(<ProductRow name={product.name} price={product.price} isInStock={product.stocked} />)
+      rows.push(<ProductRow name={product.name} price={product.price} isInStock={product.stocked} key={product.name} />)
     }
   )
 
