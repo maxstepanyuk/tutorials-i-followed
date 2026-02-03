@@ -50,11 +50,11 @@ function ProductTable({ products }) {
   </>)
 }
 
-function SearchBar({ }) {
+function SearchBar({ filterText, inStockOnly }) {
   return (
     <form action="">
-      <input type="text" />
-      <input type="checkbox" name="" id="inStockOnly" />
+      <input type="text" value={filterText} />
+      <input type="checkbox" name="" id="inStockOnly" checked={inStockOnly} />
       <label htmlFor="inStockOnly">Only show products in stock</label>
     </form>
   )
@@ -66,7 +66,7 @@ function FilterableProductTable({ products }) {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar filterText={filterText} inStockOnly={inStockOnly} />
       <ProductTable products={products} />
     </div>
   );
