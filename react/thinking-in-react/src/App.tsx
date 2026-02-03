@@ -29,6 +29,16 @@ function ProductTable({ }) {
   </>)
 }
 
+function SearchBar({ }) {
+  return (
+    <form action="">
+      <input type="text" />
+      <input type="checkbox" name="" id="inStockOnly" />
+      <label htmlFor="inStockOnly">Only show products in stock</label>
+    </form>
+  )
+}
+
 function App() {
 
   const PRODUCTS = [
@@ -43,13 +53,7 @@ function App() {
 
   return (
     <>
-      <div>
-        <form action="">
-          <input type="text" />
-          <input type="checkbox" name="" id="inStockOnly" />
-          <label htmlFor="inStockOnly">Only show products in stock</label>
-        </form>
-      </div>
+      <SearchBar />
       <ProductTable />
     </>
   )
