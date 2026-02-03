@@ -9,21 +9,40 @@ function ProductCategoryRow({ name = "category name" }) {
   return <tr><td colSpan={2}>{name}</td></tr>
 }
 
-function ProductTable({ }) {
+function ProductTable({ products }) {
+  let rows = [];
+  let currentCategory: string | null = null
+
+  products.sort(
+    (a, b) => {
+      const nameA: string = a.category.toUpperCase();
+      const nameB: string = b.category.toUpperCase();
+      if (nameA < nameB) {
+        return -1;
+      } else if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    }
+  )
+
+  products.forEach(
+    (product) => {
+      if (currentCategory !== product.category) {
+        rows.push(<ProductCategoryRow name={product.category} />)
+        currentCategory = product.category
+      }
+      rows.push(<ProductRow name={product.name} price={product.price} isInStock={product.stocked} />)
+    }
+  )
+
   return (<>
     <table>
       <thead>
         <tr><th>Name</th><th>Price</th></tr>
       </thead>
       <tbody>
-        <ProductCategoryRow name={'Fruits'} />
-        <ProductRow name={'Apple'} price={'$1'} />
-        <ProductRow name={'Dragonfruit'} price={'$1'} />
-        <ProductRow name={'Passionfruit'} price={'$2'} isInStock={false} />
-        <ProductCategoryRow name={'Vegetables'} />
-        <ProductRow name={'Spinach'} price={'$2'} />
-        <ProductRow name={'Pumpkin'} price={'$4'} isInStock={false} />
-        <ProductRow name={'Peas'} price={'$1'} />
+        {rows}
       </tbody>
     </table>
   </>)
@@ -54,7 +73,7 @@ function App() {
   return (
     <>
       <SearchBar />
-      <ProductTable />
+      <ProductTable products={PRODUCTS} />
     </>
   )
 }
