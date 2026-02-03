@@ -58,6 +58,15 @@ function SearchBar({ }) {
   )
 }
 
+function FilterableProductTable({ products }) {
+  return (
+    <div>
+      <SearchBar />
+      <ProductTable products={products} />
+    </div>
+  );
+}
+
 function App() {
 
   const PRODUCTS = [
@@ -70,12 +79,7 @@ function App() {
   ];
 
 
-  return (
-    <>
-      <SearchBar />
-      <ProductTable products={PRODUCTS} />
-    </>
-  )
+  return <FilterableProductTable products={PRODUCTS} />
 }
 
 export default App
